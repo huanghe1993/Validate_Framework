@@ -57,8 +57,7 @@ public class ServiceMethodAnnotationManager implements IAnnotationManager, Appli
         Map<String, Object> objectMap = applicationContext.getBeansWithAnnotation(ServiceMethodCheck.class);
         try {
             for (Object o : objectMap.values()) {
-                // Class<?> clazz = o.getClass().getSuperclass();
-                Class<?> clazz = o.getClass();
+                 Class<?> clazz = o.getClass().getSuperclass();
                 // 获取方法列表，如果没有注册，直接跳出返回
                 Method[] methods = clazz.getDeclaredMethods();
                 if (ArrayUtils.isEmpty(methods)) {

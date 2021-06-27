@@ -1,8 +1,9 @@
 package com.huanghe.service.rule;
 
-import com.huanghe.demo.validate.annoation.CheckRule;
-import com.huanghe.demo.validate.model.CheckResult;
-import com.huanghe.demo.validate.service.ParamCheck;
+
+import com.huanghe.annotation.CheckRule;
+import com.huanghe.model.CheckResult;
+import com.huanghe.service.ParamCheck;
 
 @CheckRule
 public class ObjectCheck implements ParamCheck {

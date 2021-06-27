@@ -2,8 +2,9 @@ package com.huanghe.annotation;
 
 import java.lang.annotation.*;
 
-@Target({ElementType.FIELD,ElementType.METHOD,ElementType.PARAMETER})
 @Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD})
+@Inherited
 @Documented
 public @interface ParameterCheck {
 

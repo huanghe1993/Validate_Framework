@@ -1,8 +1,9 @@
 package com.huanghe.service;
 
-import com.huanghe.demo.validate.model.TestModel;
+
+import com.huanghe.model.User;
 
 public interface ITestService {
 
-    String tagAdd(TestModel tagOption);
+    String tagAdd(User tagOption);
 }

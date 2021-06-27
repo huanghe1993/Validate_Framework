@@ -20,11 +20,11 @@ public class LogAspect {
 
     private Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
-    @Pointcut("execution(* com.huanghe.service..*(..))")
-    private void pointcut() {
+    @Pointcut("@annotation(com.huanghe.annotation.Log)")
+    public void logPointCut() {
     }
 
-    @After(value = "pointcut()")
+    @After(value = "logPointCut()")
     public void After(JoinPoint joinPoint) throws NotFoundException, ClassNotFoundException {
         String className = joinPoint.getTarget().getClass().getName();
         String methodName = joinPoint.getSignature().getName();

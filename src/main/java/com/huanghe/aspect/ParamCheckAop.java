@@ -9,10 +9,10 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Method;
@@ -23,20 +23,22 @@ import java.lang.reflect.Method;
  */
 @Component
 @Aspect
-@Order(1)
 public class ParamCheckAop extends AbsAopServiceParamterCheck {
     private static final Logger logger = LoggerFactory.getLogger("aopServiceParameterCheck");
+
+    @Pointcut("@annotation(com.huanghe.annotation.ParameterCheck)")
+    public void pointCut() {
+    }
 
     /**
      * 只要有ParameterCheck 这个注解的方法，都会被拦截
      *
      * @param pjp 连接点
      * @return 返回对象
-     * @throws Throwable
+     * @throws Throwable 异常
      */
-    @Around("@annotation(parameterCheck)")
-    public Object around(ProceedingJoinPoint pjp, ParameterCheck parameterCheck) throws Throwable {
-
+    @Around(value = "pointCut()")
+    public Object around(ProceedingJoinPoint pjp) throws Throwable {
         long startTime = System.currentTimeMillis();
 
         // 执行校验方法
@@ -47,15 +49,16 @@ public class ParamCheckAop extends AbsAopServiceParamterCheck {
         }
         if (!checkSuccess.isSuccess()) {
             Method method = getMethod(pjp);
-            ICheckFailedHandler handler = CheckFailedHandlerWrapper.getInstance()
-                    .getCheckFailedHander(parameterCheck.exceptionHandler());
-
-            return handler.validateFailed(checkSuccess.getMsg(),
-                    method.getReturnType(),
-                    pjp.getArgs());
+            boolean annotationPresent = method.isAnnotationPresent(ParameterCheck.class);
+            if (annotationPresent){
+                ParameterCheck parameterCheck = method.getAnnotation(ParameterCheck.class);
+                ICheckFailedHandler handler = CheckFailedHandlerWrapper.getInstance()
+                        .getCheckFailedHander(parameterCheck.exceptionHandler());
+                return handler.validateFailed(checkSuccess.getMsg(),
+                        method.getReturnType(),
+                        pjp.getArgs());
+            }
         }
-
-
         return pjp.proceed();
     }
 
