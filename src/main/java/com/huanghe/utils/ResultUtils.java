@@ -1,6 +1,6 @@
-package com.lqr.utils;
+package com.huanghe.utils;
 
-import com.lqr.model.Result;
+import com.huanghe.model.Result;
 
 public class ResultUtils {
 

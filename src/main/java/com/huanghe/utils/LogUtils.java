@@ -1,6 +1,6 @@
-package com.lqr.utils;
+package com.huanghe.utils;
 
-import com.lqr.annotation.Log;
+import com.huanghe.annotation.Log;
 
 import javassist.NotFoundException;
 

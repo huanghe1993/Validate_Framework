@@ -1,4 +1,4 @@
-package com.lqr.model;
+package com.huanghe.model;
 
 /**
  * @创建者 CSDN_LQR

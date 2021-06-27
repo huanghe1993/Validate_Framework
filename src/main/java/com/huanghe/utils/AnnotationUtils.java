@@ -1,4 +1,4 @@
-package com.lqr.utils;
+package com.huanghe.utils;
 
 import javassist.ClassPool;
 import javassist.CtClass;

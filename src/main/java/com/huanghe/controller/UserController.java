@@ -1,8 +1,8 @@
-package com.lqr.controller;
+package com.huanghe.controller;
 
-import com.lqr.model.Result;
-import com.lqr.model.User;
-import com.lqr.service.UserService;
+import com.huanghe.model.Result;
+import com.huanghe.model.User;
+import com.huanghe.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;

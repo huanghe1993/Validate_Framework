@@ -1,7 +1,7 @@
-package com.lqr.aspect;
+package com.huanghe.aspect;
 
-import com.lqr.annotation.Log;
-import com.lqr.utils.AnnotationUtils;
+import com.huanghe.annotation.Log;
+import com.huanghe.utils.AnnotationUtils;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
@@ -20,7 +20,7 @@ public class LogAspect {
 
     private Logger logger = LoggerFactory.getLogger(LogAspect.class);
 
-    @Pointcut("execution(* com.lqr.service..*(..))")
+    @Pointcut("execution(* com.huanghe.service..*(..))")
     private void pointcut() {
     }
 

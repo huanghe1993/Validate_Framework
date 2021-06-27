@@ -1,10 +1,10 @@
-package com.lqr.service;
+package com.huanghe.service;
 
-import com.lqr.annotation.Log;
-import com.lqr.model.Result;
-import com.lqr.model.User;
-import com.lqr.utils.LogUtils;
-import com.lqr.utils.ResultUtils;
+import com.huanghe.annotation.Log;
+import com.huanghe.model.Result;
+import com.huanghe.model.User;
+import com.huanghe.utils.LogUtils;
+import com.huanghe.utils.ResultUtils;
 
 import org.springframework.stereotype.Service;
 

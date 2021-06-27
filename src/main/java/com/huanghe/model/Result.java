@@ -1,4 +1,4 @@
-package com.lqr.model;
+package com.huanghe.model;
 
 public class Result {
 

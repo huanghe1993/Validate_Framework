@@ -1,4 +1,4 @@
-package com.lqr;
+package com.huanghe;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

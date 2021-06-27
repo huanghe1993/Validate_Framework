@@ -1,4 +1,4 @@
-package com.lqr.annotation;
+package com.huanghe.annotation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
