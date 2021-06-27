@@ -1,5 +1,6 @@
 package com.huanghe.model;
 
+import com.huanghe.annotation.ServiceFiledCheck;
 import lombok.Getter;
 import lombok.Setter;
 

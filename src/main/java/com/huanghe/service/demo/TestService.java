@@ -1,7 +1,6 @@
 package com.huanghe.service.demo;
 
-import com.huanghe.annotation.ParameterCheck;
-import com.huanghe.annotation.ServiceMethodCheck;
+import com.huanghe.annotation.*;
 import com.huanghe.model.TestModel;
 import com.huanghe.model.User;
 import com.huanghe.service.ITestService;
@@ -25,7 +24,7 @@ public class TestService {
      * @return 字符串返回值
      */
     @ParameterCheck(exceptionHandler = ServiceCheckFailedHandler.class)
-    public String tagAdd(User tagOption, Integer f) {
+    public String tagAdd(@Uncheck User tagOption, @SelfCheck(check = "MaxSizeCheck", condition = "", msg = "itemId需要大于0") Integer f) {
         System.out.println("hello");
         //  在做业务逻辑之前，系统其实已经通过ParameterCheck这个注解对 tagWriteOption这个对象&对象
         //        指定的属性做了基础的校验工作)

@@ -18,10 +18,7 @@ import org.springframework.util.CollectionUtils;
 import javax.annotation.Resource;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 针对服务接口的方法参数做校验
@@ -36,7 +33,6 @@ public class ServiceMethodAnnotationManager implements IAnnotationManager, Appli
      */
     private final static Integer reserveLen = 2;
 
-
     /**
      * 每个服务对应的方法集合
      */
@@ -48,7 +44,7 @@ public class ServiceMethodAnnotationManager implements IAnnotationManager, Appli
     private final Map<String, List<Class<?>>> methodParamMap = new HashMap<>();
 
     @Resource
-    ParamCheckRuleManager paramCheckRuleManager;
+    private ParamCheckRuleManager paramCheckRuleManager;
 
     private ApplicationContext applicationContext;
 
@@ -92,19 +88,15 @@ public class ServiceMethodAnnotationManager implements IAnnotationManager, Appli
     @Override
     public CheckResult check(Object... args) {
         CheckResult checkResult = new CheckResult(true);
-
         // 参数列表为空，直接返回true，不做校验
         if (ArrayUtils.isEmpty(args)) {
             return checkResult;
         }
-
         // 参数长度必须大于两个，第一个是接口服务类对象，第二个是调用的方法签名，剩余的是入参
         if (args.length < reserveLen) {
             return checkResult;
         }
-
         Object[] objects = args;
-
         // 第二个是调用的方法签名
         String methodName = args[1].toString();
         // 类名+方法名作为key
@@ -146,13 +138,16 @@ public class ServiceMethodAnnotationManager implements IAnnotationManager, Appli
                     if (isHaveSelfCheck(annotationAndParamIndexMap, paramIndex)) {
                         // 参数上的自定义检验规则注解
                         SelfCheck paramAnnotation = (SelfCheck) annotationAndParamIndexMap.get(paramIndex);
+                        // 第二个参数是数据的类型，第三个参数的是自定义的校验，第四个参数的条件，第五个信息是失败的信息
+                        // 如果存在自定义的校验，那么第三个参数的check字段就是校验规则类的名称
                         checkResult = paramCheckRuleManager.check(objects[i], paramTypeNameList.get(paramIndex),
-                                Arrays.asList(paramAnnotation.check()),
+                                Collections.singletonList(paramAnnotation.check()),
                                 paramAnnotation.condition(),
                                 paramAnnotation.msg());
                     } else {
+                        //  使用的是ParameterCheck
                         checkResult = paramCheckRuleManager.check(objects[i], paramTypeNameList.get(paramIndex),
-                                Arrays.asList(annotation.selfCheck()),
+                                Collections.singletonList(annotation.selfCheck()),
                                 annotation.condition(),
                                 annotation.msg());
                     }

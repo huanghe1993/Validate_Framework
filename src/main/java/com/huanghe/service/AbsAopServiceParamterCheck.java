@@ -23,7 +23,6 @@ public abstract class AbsAopServiceParamterCheck {
     private ServiceParameterCheck serviceParameterCheck;
 
     protected CheckResult check(ProceedingJoinPoint pjp, boolean isWriteLog) throws Throwable {
-
         Signature sig = pjp.getSignature();
         MethodSignature msig;
         if (!(sig instanceof MethodSignature)) {
@@ -32,10 +31,8 @@ public abstract class AbsAopServiceParamterCheck {
         msig = (MethodSignature) sig;
         Object target = pjp.getTarget();
         Method currentMethod = target.getClass().getMethod(msig.getName(), msig.getParameterTypes());
-
         // 当前方法是否ParameterCheck这个注解
         if (currentMethod.isAnnotationPresent(ParameterCheck.class)) {
-
             // 方法参数
             Object[] args = pjp.getArgs();
             Object[] params = new Object[args.length + 2];

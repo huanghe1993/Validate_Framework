@@ -76,22 +76,20 @@ public class ServiceParameterCheck implements ApplicationContextAware {
         for (Object o : objects) {
             Class<?> objectType = o.getClass();
             if (objectType.getSimpleName().endsWith("List")) {
-                o = ((List) o).get(0);
+                o = ((List<?>) o).get(0);
             } else if (objectType.getSimpleName().endsWith("Map")) {
-                o = ((Map) o).values().toArray()[0];
+                o = ((Map<?, ?>) o).values().toArray()[0];
             } else if (objectType.getSimpleName().endsWith("Set")) {
-                o = ((Set) o).toArray()[0];
+                o = ((Set<?>) o).toArray()[0];
             } else if (objectType.isArray()) {
-                o = Arrays.asList(o).get(0);
+                o = Collections.singletonList(o).get(0);
             }
 
-
-            CheckResult checkRult = iAnnotationManager.check(o);
-            if (!checkRult.isSuccess()) {
-                return checkRult;
+            CheckResult checkResult = iAnnotationManager.check(o);
+            if (!checkResult.isSuccess()) {
+                return checkResult;
             }
         }
-
         return new CheckResult(true);
     }
 

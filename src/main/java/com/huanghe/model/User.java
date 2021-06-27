@@ -1,11 +1,15 @@
 package com.huanghe.model;
 
+import com.huanghe.annotation.MinNum;
+import com.huanghe.annotation.ServiceFiledCheck;
+
 /**
  * @创建者 CSDN_LQR
  * @描述 用户
  */
+@ServiceFiledCheck
 public class User {
-
+    @MinNum()
     private String name;
     private int age;
     private String sex;

@@ -8,7 +8,7 @@ import java.lang.annotation.*;
 public @interface SelfCheck {
     String check();
 
-    String condition();
+    String condition() default "";
 
-    String msg();
+    String msg() default "";
 }
