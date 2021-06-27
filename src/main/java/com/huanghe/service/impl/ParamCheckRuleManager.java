@@ -17,7 +17,7 @@ public class ParamCheckRuleManager {
     /**
      * 基础校验&自定义校验
      * 基础校验是必须要做的，自定义校验根据注解上的配置来决定是否要做
-     * @param v
+     * @param v 待校验的值
      * @param objectType 待校验值的数据类型
      * @param selfChecks 自定义校验
      * @param condition 自定义校验时的规则内容

@@ -43,7 +43,7 @@ public class ParamCheckRuleCollection implements ApplicationContextAware {
 
     /**
      * 返回对应规则名称的校验类,如果没有找到对应的规则类，那么返回对象检验规则类
-     *
+     * 如果这里找到了对应类的Check则校验对应的类Check
      * @param checkName 校验名称
      * @return 返回对应规则名称的校验类
      */

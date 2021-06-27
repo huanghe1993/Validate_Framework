@@ -25,6 +25,7 @@ import java.util.Map;
 
 /**
  * 针对服务接口的方法参数做校验
+ * 该服务是针对方法入参级别进行校验
  */
 @ServiceCheckPoint
 public class ServiceMethodAnnotationManager implements IAnnotationManager, ApplicationContextAware {

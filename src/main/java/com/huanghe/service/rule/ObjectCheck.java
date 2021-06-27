@@ -17,7 +17,10 @@ public class ObjectCheck implements ParamCheck {
      */
     @Override
     public CheckResult check(Object t, Class<?> objectType, String c) {
-        if (null == t){
+        if (null == t) {
+            return new CheckResult(false);
+        }
+        if (!t.getClass().equals(objectType)) {
             return new CheckResult(false);
         }
         return new CheckResult(true);
