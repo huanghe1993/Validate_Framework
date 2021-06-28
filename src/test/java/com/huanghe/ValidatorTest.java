@@ -5,8 +5,6 @@ import com.huanghe.utils.ValidatorUtil;
 
 import java.util.Map;
 
-
-
 public class ValidatorTest {
 
     public static void main(String[] args) {
@@ -29,9 +27,6 @@ public class ValidatorTest {
         startTime = System.currentTimeMillis();
         print(ValidatorUtil.validate(s));
         System.out.println("===============耗时(毫秒)=" + (System.currentTimeMillis() - startTime));
-
-
-
     }
 
     private static void print(Map<String, StringBuffer> errorMap) {
