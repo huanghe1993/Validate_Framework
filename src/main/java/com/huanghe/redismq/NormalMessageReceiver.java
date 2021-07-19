@@ -10,7 +10,7 @@ public class NormalMessageReceiver implements MsgConsumer {
 
     @Override
     public void onMessage(Object message) {
-        log.info("收到消息:" + message);
+        log.info(Thread.currentThread().getName()+"收到消息:" + message);
     }
 
     @Override
