@@ -1,2 +1,4 @@
-# AspectLogDemo
-Spring Boot使用自定义注解+AOP处理日志
+# Validate Framework
+ 在介绍框架的原理前，先说明一下，我们为什么要设计这么一个框架： 在接口调用或者是微服务调用的过程中经常会进行API REST接口机的调用，这个时候很有可能会产生很多的参数校验
+
+
